@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
     name = "";
     username = "";
     password = "";
     confirmPassword = "";
-    urlRegister = "http://localhost:8183/web/register-admin";
+    state = {};
     
     handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +16,9 @@ export default class Register extends Component {
         let isValid = this.isPasswordMatched(this.password, this.confirmPassword);
 
         if(!isValid) {
+            this.setState({
+                message: "Confirm password not matched!"
+            });
             return false;
         }
 
@@ -26,22 +30,34 @@ export default class Register extends Component {
             confirmPassword: this.confirmPassword
         }
 
-        axios.post(this.urlRegister, data).then(
+        axios.post("register-admin", data).then(
             res => {
-                alert(res.data.message);
-                localStorage.setItem("token", res.data.data.token);
-                localStorage.setItem("userid", res.data.data.user.userid);
+                if(res.data.status) {
+                    localStorage.setItem("token", res.data.data.token);
+                    localStorage.setItem("userid", res.data.data.user.userid);
+                    this.setState({
+                        user: res.data.data.user
+                    });
+                    this.props.setUser(res.data.data.user);
+                }
+                else {
+                    this.setState({
+                        message: "Something went wrong"
+                    });
+                }
             }
         ).catch(
             err => {
                 console.log(err);
+                this.setState({
+                    message: "Something went wrong"
+                });
             }
         )
     }
 
     isPasswordMatched = (password, confirmPassword) => {
         if(password !== confirmPassword) {
-            alert("Confirm password not matched!");
             return false;
         }
         else {
@@ -50,11 +66,25 @@ export default class Register extends Component {
     }
 
     render() {
+        let error;
+
+        if(this.state.user || this.props.user) {
+            return <Redirect to={'/'}/>
+        }
+
+        if(this.state.message) {
+            error = (
+                <div className='alert alert-danger' role='alert'>
+                    {this.state.message}
+                </div>
+            );
+        }
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <h3>Sign Up</h3>
                 <hr></hr>
-
+                {error}
                 <div className="mb-3">
                     <label className="form-label">Name</label>
                     <input type="text" className="form-control" placeholder="Name" required

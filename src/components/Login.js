@@ -59,19 +59,19 @@ export default class Login extends Component {
             <form id="signin" onSubmit={this.handleSubmit}>
                 <img className="mb-2 mx-auto" style={{display:"block"}} src="https://bppt.go.id/images/icons/logo-bppt20.png" />
                 <br />
-                
-                <div class="form-floating mb-3">
+                {error}
+                <div className="form-floating mb-3">
                     <input type="text" className="form-control" id="username" placeholder="Username" 
                         onChange={(e) => this.username = e.target.value}
-                        required autofocus />
-                    <label className="form-label" for="username">Username</label>
+                        required autoFocus />
+                    <label className="form-label" htmlFor="username">Username</label>
                 </div>
                 
-                <div class="form-floating mb-3">
+                <div className="form-floating mb-3">
                     <input type="password" className="form-control" id="password" placeholder="Password" 
                         onChange={(e) => this.password = e.target.value}
                         required />
-                    <label className="form-label" for="password">Password</label>
+                    <label className="form-label" htmlFor="password">Password</label>
                 </div>
         
                 <div className="d-grid gap-2">
@@ -82,25 +82,6 @@ export default class Login extends Component {
                     </p>
                 </div>
             </form>
-    
-            /* <form onSubmit={this.handleSubmit}>
-                <h3>Login</h3>
-                <hr></hr>
-                {error}
-                <div className="mb-3">
-                    <label className="form-label">Username</label>
-                    <input type="text" className="form-control" placeholder="Username" required
-                        onChange={(e) => this.username = e.target.value}></input>
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Password</label>
-                    <input type="password" className="form-control" placeholder="Password" required
-                        onChange={(e) => this.password = e.target.value}></input>
-                </div>
-                <Link to={"/register"} >Don't have account? Register here</Link>
-                <button className="btn btn-primary btn-block float-end">Login</button>
-            </form> */
         )
     }
 }

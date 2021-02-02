@@ -86,27 +86,27 @@ export default class Register extends Component {
                 <br />
                 {error}
                 <div className="form-floating mb-3">
-                    <input type="text" className="form-control" id="fullname" placeholder="Name" required
+                    <input type="text" className="form-control" id="fullname" placeholder="Name" required autoFocus
                         onChange={(e) => this.name = e.target.value}></input>
-                    <label className="form-label" for="fullname">Name</label>
+                    <label className="form-label" htmlFor="fullname">Name</label>
                 </div>
                 
                 <div className="form-floating mb-3">
                     <input type="text" className="form-control" id="username" placeholder="Username" required
                         onChange={(e) => this.username = e.target.value}></input>
-                    <label className="form-label" for="username">Username</label>
+                    <label className="form-label" htmlFor="username">Username</label>
                 </div>
                 
                 <div className="form-floating mb-3">
                     <input type="password" className="form-control" id="password" placeholder="Password" required
                         onChange={(e) => this.password = e.target.value}></input>
-                    <label className="form-label" for="password">Password</label>
+                    <label className="form-label" htmlFor="password">Password</label>
                 </div>
                 
                 <div className="form-floating mb-3">
                     <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm password" required
                         onChange={(e) => this.confirmPassword = e.target.value}></input>
-                    <label className="form-label" for="confirmPassword">Confirm Password</label>
+                    <label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
                 </div>
 
                 <div className="d-grid gap-2">

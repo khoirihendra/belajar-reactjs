@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 export default class Register extends Component {
     name = "";
@@ -82,34 +82,40 @@ export default class Register extends Component {
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <h3>Sign Up</h3>
-                <hr></hr>
+                <img className="mb-2 mx-auto" style={{display:"block"}} src="https://bppt.go.id/images/icons/logo-bppt20.png" />
+                <br />
                 {error}
-                <div className="mb-3">
-                    <label className="form-label">Name</label>
-                    <input type="text" className="form-control" placeholder="Name" required
+                <div className="form-floating mb-3">
+                    <input type="text" className="form-control" id="fullname" placeholder="Name" required
                         onChange={(e) => this.name = e.target.value}></input>
+                    <label className="form-label" for="fullname">Name</label>
                 </div>
                 
-                <div className="mb-3">
-                    <label className="form-label">Username</label>
-                    <input type="text" className="form-control" placeholder="Username" required
+                <div className="form-floating mb-3">
+                    <input type="text" className="form-control" id="username" placeholder="Username" required
                         onChange={(e) => this.username = e.target.value}></input>
+                    <label className="form-label" for="username">Username</label>
                 </div>
                 
-                <div className="mb-3">
-                    <label className="form-label">Password</label>
-                    <input type="password" className="form-control" placeholder="Password" required
+                <div className="form-floating mb-3">
+                    <input type="password" className="form-control" id="password" placeholder="Password" required
                         onChange={(e) => this.password = e.target.value}></input>
+                    <label className="form-label" for="password">Password</label>
                 </div>
                 
-                <div className="mb-3">
-                    <label className="form-label">Confirm Password</label>
-                    <input type="password" className="form-control" placeholder="Confirm password" required
+                <div className="form-floating mb-3">
+                    <input type="password" className="form-control" id="confirmPassword" placeholder="Confirm password" required
                         onChange={(e) => this.confirmPassword = e.target.value}></input>
+                    <label className="form-label" for="confirmPassword">Confirm Password</label>
                 </div>
 
-                <button className="btn btn-primary btn-block float-end">Sign up</button>
+                <div className="d-grid gap-2">
+                    <button className="btn btn-primary btn-block float-end">Sign up</button>
+                    
+                    <p className="text-center">
+                        You have account? <Link to={"/login"} >Login here</Link>
+                    </p>
+                </div>
             </form>
         )
     }

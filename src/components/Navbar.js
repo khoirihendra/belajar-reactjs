@@ -9,24 +9,16 @@ export default class Navbar extends Component {
     }
 
     render() {
+        let home;
         let menu;
+
         if (this.props.user) {
+            
+            home = (<Link className="navbar-brand" to={"/"}>FC Admin Panel</Link>);
             menu = (
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item">
                         <Link to={"/"} className="nav-link" onClick={this.handleLogout}>Logout</Link>
-                    </li>
-                </ul>
-            );
-        }
-        else {
-            menu = (
-                <ul className="navbar-nav ms-auto">
-                    <li className="nav-item">
-                        <Link className="nav-link" to={"/login"}>Login</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to={"/register"}>Sign up</Link>
                     </li>
                 </ul>
             );
@@ -36,8 +28,7 @@ export default class Navbar extends Component {
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
                     <div className="container">
-                        <Link className="navbar-brand" to={"/"}>Home</Link>
-
+                        {home}
                         {menu}
                     </div>
                 </nav>

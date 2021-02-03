@@ -57,25 +57,26 @@ export default class Login extends Component {
 
         return (
             <form id="signin" onSubmit={this.handleSubmit}>
-                <img className="mb-2 mx-auto" style={{display:"block"}} src="https://bppt.go.id/images/icons/logo-bppt20.png" />
+                <img className="mb-2 mx-auto" style={{display:"block"}} alt=""
+                    src="https://bppt.go.id/images/icons/logo-bppt20.png" />
                 <br />
                 {error}
                 <div className="form-floating mb-3">
+                    <label className="form-label" htmlFor="username">Username</label>
                     <input type="text" className="form-control" id="username" placeholder="Username" 
                         onChange={(e) => this.username = e.target.value}
                         required autoFocus />
-                    <label className="form-label" htmlFor="username">Username</label>
                 </div>
                 
                 <div className="form-floating mb-3">
+                    <label className="form-label" htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password" placeholder="Password" 
                         onChange={(e) => this.password = e.target.value}
                         required />
-                    <label className="form-label" htmlFor="password">Password</label>
                 </div>
         
                 <div className="d-grid gap-2">
-                    <button className="btn btn-primary">Sign in</button>
+                    <button className="btn btn-primary btn-block float-end" >Sign in</button>
                     
                     <p className="text-center">
                         Don't have account? <Link to={"/register"} >Register here</Link>
